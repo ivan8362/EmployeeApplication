@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("rest/api/v1/employees")
+@RequestMapping("api/v1/employees")
 public class EmployeeController {
 
     @Autowired
@@ -31,7 +31,6 @@ public class EmployeeController {
     public ResponseDTO addEmployee(@Valid @RequestBody EmployeeDTO employee){
         ResponseDTO responseDTO = new ResponseDTO(ResponseDTO.Status.SUCCESS,
                 MessageConstants.EMPLOYEE_ADDED_SUCCESSFULLY);
-
         employeeService.addEmployee(employee);
 
         return responseDTO;
@@ -40,17 +39,16 @@ public class EmployeeController {
     @ResponseStatus(value = HttpStatus.OK)
     @GetMapping(value = "/", produces = { MediaType.APPLICATION_JSON_VALUE})
     public String showAllEmployees() {
+        List<Employee> employees = this.employeeRepository.findAll();
+        String html = "[";
 
-    List<Employee> employees = this.employeeRepository.findAll();
+        for (Employee employee : employees) {
+            html += employee + ",\n";
+        }
 
-    String html = "[";
-    for (Employee employee : employees) {
-        html += employee + ",\n";
-    }
+        html += "]";
 
-    html += "]";
-
-    return html;
+        return html;
     }
 
     @ResponseBody
@@ -63,7 +61,6 @@ public class EmployeeController {
             ){
         ResponseDTO responseDTO = new ResponseDTO(ResponseDTO.Status.SUCCESS,
                 MessageConstants.EMPLOYEE_UPDATED_SUCCESSFULLY);
-
         employeeService.updateEmployee(
                 id, employeeDTO.getDisplayName(), employeeDTO.getCustomerId(), employeeDTO.getFirstName(),
                 employeeDTO.getLastName(),
@@ -84,6 +81,13 @@ public class EmployeeController {
         ResponseDTO responseDTO = new ResponseDTO(ResponseDTO.Status.SUCCESS,
             MessageConstants.EMPLOYEE_DELETED_SUCCESSFULLY);
         employeeService.deleteEmployee(id);
+
         return responseDTO;
+    }
+
+    @ResponseStatus(value = HttpStatus.OK)
+    @GetMapping(value = "/customers/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public String getEmployeesByCustomerId(@PathVariable(name = "id") String id){
+        return employeeService.getEmployeesByCustomerId(id);
     }
 }

@@ -34,8 +34,15 @@ public interface EmployeeApi {
     Employee getEmployeeById(String id);
 
     /**
-     * This methiod removes an employee from MongoDB.
+     * This method removes an employee from MongoDB.
      * @param id - employee ID.
      */
     void deleteEmployee(String id);
+
+    /**
+     * This method gets all employees from DB which has customerId equals given customerId.
+     * @param id - customer ID.
+     * @return JSON with employees.
+     */
+    String getEmployeesByCustomerId(String id);
 }

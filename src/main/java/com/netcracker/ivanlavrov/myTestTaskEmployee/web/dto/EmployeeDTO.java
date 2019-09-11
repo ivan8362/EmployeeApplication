@@ -14,7 +14,6 @@ import javax.validation.constraints.NotNull;
  * lastName - employee's last name.
  * email - employee's email address. No validation.
  */
-
 @Data
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class EmployeeDTO {

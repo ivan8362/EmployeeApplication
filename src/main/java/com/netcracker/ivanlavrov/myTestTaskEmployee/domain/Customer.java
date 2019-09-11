@@ -1,14 +1,13 @@
 package com.netcracker.ivanlavrov.myTestTaskEmployee.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
-/*@Data
-@JsonIgnoreProperties(ignoreUnknown = true)*/
+@Data
+//@JsonIgnoreProperties(ignoreUnknown = true) // If there is one field missing, then app will not throw an error.
 public class Customer {
-    private String id;
-    private String name;
-    private String description;
-    private String email;
-    private String address;
+    private final String id;
+    private final String name;
+    private final String description;
+    private final String email;
+    private final String address;
 }

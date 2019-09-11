@@ -9,12 +9,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import com.netcracker.ivanlavrov.myTestTaskEmployee.exception.EmployeeAlreadyExistsException;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
@@ -26,10 +23,13 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         hashMap.put("status", "404");
         hashMap.put("error", "Not Found");
         StringBuilder builder = new StringBuilder("{\n \"error\" : {\n");
+
         for(Map.Entry<String, String> entry: hashMap.entrySet()) {
             builder.append("\"" + entry.getKey() + "\" : \"" + entry.getValue() + "\"\n");
         }
+
         builder.append("}\n}");
+
         return handleExceptionInternal(ex, builder, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
@@ -40,24 +40,30 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         hashMap.put("status", "409");
         hashMap.put("error", "Conflict");
         StringBuilder builder = new StringBuilder("{\n \"error\" : {\n");
-        for(Map.Entry<String, String> entry: hashMap.entrySet()) {
+
+        for (Map.Entry<String, String> entry: hashMap.entrySet()) {
             builder.append("\"" + entry.getKey() + "\" : \"" + entry.getValue() + "\"\n");
         }
+
         builder.append("}\n}");
+
         return handleExceptionInternal(ex, builder, new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
 
-    @ExceptionHandler (value = {NullPointerException.class})
+    @ExceptionHandler (value = {CustomerNotFoundException.class})
     protected ResponseEntity<Object> handleNoCustomer(RuntimeException ex, WebRequest request) {
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("userMessage", ErrorMessages.CUSTOMER_DOES_NOT_EXIST);
         hashMap.put("status", "404");
         hashMap.put("error", "Not Found");
         StringBuilder builder = new StringBuilder("{\n \"error\" : {\n");
-        for(Map.Entry<String, String> entry: hashMap.entrySet()) {
+
+        for (Map.Entry<String, String> entry: hashMap.entrySet()) {
             builder.append("\"" + entry.getKey() + "\" : \"" + entry.getValue() + "\"\n");
         }
+
         builder.append("}\n}");
+
         return handleExceptionInternal(ex, builder, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 }
