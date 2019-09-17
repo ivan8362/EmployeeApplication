@@ -6,13 +6,14 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.7.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.netcracker.ivanlavrov</groupId>
-	<artifactId>myTestTaskEmployee</artifactId>
+	<groupId>com.netcracker.dmp.testtask.customer</groupId>
+	<artifactId>employee-application</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>myTestTaskEmployee</name>
-	<description>Demo project for Spring Boot</description>
+	<name>Employee application</name>
+	<url>https://github.com/ivan8362/NcTestTaskEmployee</url>
+	<description>This application is a test task for Digital Marketplace and provides REST API to create, get, update, delete employees.
+		This app interacts with customer application</description>
 
 	<properties>
 		<java.version>1.8</java.version>
