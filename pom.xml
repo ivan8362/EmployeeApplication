@@ -11,7 +11,7 @@
 	<artifactId>employee-application</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Employee application</name>
-	<url>https://github.com/ivan8362/NcTestTaskEmployee</url>
+	<url>https://github.com/ivan8362/EmployeeApplication</url>
 	<description>This application is a test task for Digital Marketplace and provides REST API to create, get, update, delete employees.
 		This app interacts with customer application</description>
 
