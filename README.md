@@ -2,6 +2,7 @@
 Two Springboot applications:
 - This one stores information about employees
 - The second stores information about customers (https://github.com/ivan8362/CustomerApplication)
+
 Both applications expose REST API for CRUD operations for the entities which the application stores (1st one has CRUD API for customers,
 the second app has CRUD API for employees)
 Customers have name, ID, description, email, address.
